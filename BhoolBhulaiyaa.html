@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhool Bhulaiyaa Series - CineKan</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Linking external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Cine<span>Kan</span></a>
+    </header>
+
+    <main class="container">
+        <div class="watch-layout">
+            <div class="main-content-col">
+                <div class="video-player-container">
+                    <!-- Video player placeholder -->
+                    <iframe 
+                        id="video-player-iframe"
+                        src="" 
+                        title="Movie Player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="episode-meta">
+                    <!-- Title updated for the current watching movie/episode -->
+                    <h1 class="episode-title" id="current-episode-title">You are watching Bhool Bhulaiyaa (2007)</h1>
+                    <div class="episode-actions">
+                        <button class="action-btn" id="prev-ep-btn" disabled><i class="fas fa-arrow-left"></i>Prev</button>
+                        <button class="action-btn" id="next-ep-btn">Next<i class="fas fa-arrow-right"></i></button>
+                        <button class="action-btn"><i class="fas fa-plus"></i> Add to List</button>
+                    </div>
+                </div>
+
+                <!-- EPISODES LIST: Repurposed for the Bhool Bhulaiyaa Movie Series -->
+                <div class="widget episodes-list-widget">
+                    <h2 class="widget-title">The Bhool Bhulaiyaa Trilogy (3 Parts)</h2>
+                    <div class="episodes-list" id="episodes-list-container">
+                        <!-- Content populated by script.js -->
+                    </div>
+                </div>
+                
+                <div class="widget download-widget">
+                    <h2 class="widget-title">Download</h2>
+                    <div class="download-list">
+                        <table>
+                            <thead>
+                                <tr><th>Part</th><th>Quality</th><th>Video</th><th>Subtitles</th></tr>
+                            </thead>
+                            <tbody id="download-links-tbody">
+                                <!-- Content populated by script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="sidebar-col">
+                <div class="widget drama-info-widget">
+                    <!-- Movie Poster -->
+                    <div class="info-poster"><img src="https://m.media-amazon.com/images/M/MV5BMGFhMDQ4MzMtMTUxOC00NDE0LTkzZWMtMzhhMGNiMDlhNDNmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Bhool Bhulaiyaa Series Poster"></div>
+                    <h2 class="info-title">Bhool Bhulaiyaa Trilogy</h2>
+                    <p class="info-synopsis truncated" id="synopsis-text">The Bhool Bhulaiyaa film series blends comedy, horror, and psychological thriller elements, centering around ancient curses, haunted havelis, and the arrival of a psychiatrist/paranormal expert to uncover the truth. The saga started with Dr. Siddhant's quest to solve the Manjulika mystery and continued with Ruhaan's arrival in the second installment, leading up to the grand return in the third part.</p>
+                    <a id="read-more-btn" class="read-more-btn">Read More</a>
+                    <div class="info-details">
+                        <p><span>Type:</span> Horror-Comedy Saga</p>
+                        <p><span>Year:</span> 2007 - 2024</p>
+                        <p><span>Parts:</span> 3 Movies</p>
+                        <p><span>Status:</span> Ongoing</p>
+                        <p><span>Score:</span> 7.5/10</p>
+                        <p><span>Duration:</span> Approx. 7 hrs.</p>
+                        <p><span>Genres:</span> Horror, Comedy, Mystery, Thriller</p>
+                    </div>
+                </div>
+                <div class="widget recommendations-widget">
+                    <h2 class="widget-title">You Might Also Like</h2>
+                    <div class="recommendations-list" id="recommendations-list">
+                        <!-- Content populated by script.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Cinekan. All rights reserved.</p>
+    </footer>
+
+<!-- Linking external JavaScript -->
+<script>document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. MOVIE SERIES DATA ---
+    const episodeData = [ 
+        { 
+            number: 1, 
+            title: 'Part 1: Bhool Bhulaiyaa (2007)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt0995031', 
+            year: '2007',
+            description: 'The original masterpiece. Dr. Siddhant Chaturvedi, a psychiatrist, is called to a haunting haveli to investigate strange occurrences involving a newly married couple and the spirit of Manjulika.',
+            downloadLinks: [ { quality: '1080p', url: '#' }, { quality: '720p', url: '#' } ] 
+        }, 
+        { 
+            number: 2, 
+            title: 'Part 2: Bhool Bhulaiyaa 2 (2022)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt6455162', 
+            year: '2022',
+            description: 'Ruhaan, a charlatan, pretends to be a psychic to deceive a family but accidentally reopens the closed chamber, releasing the spirit of Manjulika once again.',
+            downloadLinks: [ { quality: '4K', url: '#' }, { quality: '1080p', url: '#' } ] 
+        },
+        { 
+            number: 3, 
+            title: 'Part 3: Bhool Bhulaiyaa 3 (2024)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt26932223', 
+            year: '2024',
+            description: 'The return of Manjulika and the Madhubala ghost in what promises to be the grandest and scariest installment yet. Ruhaan must face a new supernatural threat.',
+            downloadLinks: [ { quality: '4K', url: '#' }, { quality: '1080p', url: '#' } ] 
+        }
+    ];
+    
+    // Placeholder recommendation data
+    const recommendationData = [
+        { pageUrl: 'stree.html', title: 'Stree 2', meta: 'Bollywood • Horror-Comedy', poster: 'https://m.media-amazon.com/images/M/MV5BZTEyYzVjYjEtNWYzZi00NWRhLTgyZjUtNDlkZjBiNWIxYTEwXkEyXkFqcGc@._V1_.jpg' },
+        { pageUrl: 'shaitaan.html', title: 'Shaitaan', meta: 'Bollywood • Thriller/Horror', poster: 'https://m.media-amazon.com/images/M/MV5BM2Y2MjdhMjItYjI4Yi00NmM3LTk4ZGItZDQ2NmNlZmZhYjAzXkEyXkFqcGc@._V1_.jpg' },
+        { pageUrl: 'deadpool_wolverine.html', title: 'Deadpool & Wolverine', meta: 'Hollywood • Action/Comedy', poster: 'https://m.media-amazon.com/images/S/pv-target-images/dd6fb66997dd4cb5606b587bb255d2cd2cec20ecbd11852a8f6b07a1358d09a1.jpg' },
+        { pageUrl: 'ddpd2.html', title: 'De De Pyaar De 2', meta: 'Bollywood • Rom-Com', poster: 'https://m.media-amazon.com/images/M/MV5BMDAzODI5MjctNWRhNi00OWU5LWIxMTItMTFjNzc4YjY3N2FlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' },
+    ];
+    
+    let currentEpisode = 1;
+    const totalEpisodes = episodeData.length;
+
+    // --- 2. DOM Elements ---
+    const episodeListContainer = document.getElementById('episodes-list-container');
+    const currentEpisodeTitle = document.getElementById('current-episode-title');
+    const downloadLinksTbody = document.getElementById('download-links-tbody');
+    const prevBtn = document.getElementById('prev-ep-btn');
+    const nextBtn = document.getElementById('next-ep-btn');
+    const videoPlayer = document.getElementById('video-player-iframe');
+    const synopsisText = document.getElementById('synopsis-text');
+    const readMoreBtn = document.getElementById('read-more-btn');
+    const recommendationsListContainer = document.getElementById('recommendations-list');
+
+    // --- 3. FUNCTIONS ---
+
+    function updateUI(episodeNumber) {
+        currentEpisode = parseInt(episodeNumber, 10);
+        const episode = episodeData.find(ep => ep.number === currentEpisode);
+        
+        // 1. Update Video Player and Title
+        if (episode && episode.videoUrl) { 
+            videoPlayer.src = episode.videoUrl; 
+        }
+        currentEpisodeTitle.textContent = `You are watching Part ${currentEpisode}: ${episode.title}`;
+        
+        // 2. Update Episode List Selection
+        document.querySelectorAll('.episode-item').forEach(item => { 
+            item.classList.toggle('current', parseInt(item.dataset.episode, 10) === currentEpisode); 
+        });
+        document.querySelector(`.episode-item[data-episode='${currentEpisode}']`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // 3. Update Download Links
+        downloadLinksTbody.innerHTML = '';
+        if (episode && episode.downloadLinks) {
+            episode.downloadLinks.forEach(link => {
+                downloadLinksTbody.innerHTML += `
+                    <tr>
+                        <td data-label="Part">Part ${currentEpisode}</td>
+                        <td data-label="Quality">${link.quality}</td>
+                        <td data-label="Video"><a href="${link.url}" class="download-btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Download</a></td>
+                        <td data-label="Subtitles"><a href="#" class="download-btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-closed-captioning"></i> Download (ENG/HIN)</a></td>
+                    </tr>`;
+            });
+        }
+        
+        // 4. Update Navigation Buttons
+        prevBtn.disabled = currentEpisode === 1;
+        nextBtn.disabled = currentEpisode === totalEpisodes;
+    }
+
+    function generateEpisodeList() {
+        episodeData.forEach(episode => {
+            episodeListContainer.innerHTML += `
+                <a class="episode-item" data-episode="${episode.number}">
+                    <div class="ep-info">
+                        <p class="ep-number">Part ${episode.number}</p>
+                        <p class="ep-desc">${episode.title} (${episode.year})</p>
+                    </div>
+                </a>`;
+        });
+    }
+    
+    function generateRecommendations() {
+        recommendationsListContainer.innerHTML = recommendationData.map(rec => `
+            <a href="${rec.pageUrl}" class="rec-card">
+                <img src="${rec.poster}" alt="${rec.title}">
+                <div class="rec-card-info">
+                    <p class="rec-title">${rec.title}</p>
+                    <p class="rec-meta">${rec.meta}</p>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    // --- 4. EVENT LISTENERS & INITIAL CALLS ---
+    
+    // Episode Selection Handler
+    episodeListContainer.addEventListener('click', (e) => { 
+        const item = e.target.closest('.episode-item'); 
+        if (item) updateUI(item.dataset.episode); 
+    });
+    
+    // Navigation Handlers
+    prevBtn.addEventListener('click', () => { 
+        if (currentEpisode > 1) updateUI(currentEpisode - 1); 
+    });
+    nextBtn.addEventListener('click', () => { 
+        if (currentEpisode < totalEpisodes) updateUI(currentEpisode + 1); 
+    });
+    
+    // Synopsis Read More/Less Toggle
+    if (synopsisText && readMoreBtn) { 
+        readMoreBtn.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            synopsisText.classList.toggle('truncated'); 
+            readMoreBtn.textContent = synopsisText.classList.contains('truncated') ? 'Read More' : 'Read Less'; 
+        }); 
+    }
+
+    // Initial load
+    generateEpisodeList();
+    generateRecommendations();
+    updateUI(1); 
+});</script>
+
+</body>
+</html>
