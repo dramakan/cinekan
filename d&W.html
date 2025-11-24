@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadpool & Wolverine Saga - CineKan</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- Linking external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Cine<span>Kan</span></a>
+    </header>
+
+    <main class="container">
+        <div class="watch-layout">
+            <div class="main-content-col">
+                <div class="video-player-container">
+                    <!-- Video player placeholder -->
+                    <iframe 
+                        id="video-player-iframe"
+                        src="" 
+                        title="Movie Player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="episode-meta">
+                    <!-- Title updated for the current watching movie/episode -->
+                    <h1 class="episode-title" id="current-episode-title">You are watching Deadpool & Wolverine (2024)</h1>
+                    <div class="episode-actions">
+                        <button class="action-btn" id="prev-ep-btn" disabled><i class="fas fa-arrow-left"></i>Prev</button>
+                        <button class="action-btn" id="next-ep-btn">Next<i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- EPISODES LIST: Re-enabled and repurposed for the movie series -->
+                <div class="widget episodes-list-widget">
+                    <h2 class="widget-title">The Deadpool & Wolverine Saga (5 Parts)</h2>
+                    <div class="episodes-list" id="episodes-list-container">
+                        <!-- Content populated by script.js -->
+                    </div>
+                </div>
+                
+                <div class="widget download-widget">
+                    <h2 class="widget-title">Download</h2>
+                    <div class="download-list">
+                        <table>
+                            <thead>
+                                <tr><th>Part</th><th>Quality</th><th>Video</th><th>Subtitles</th></tr>
+                            </thead>
+                            <tbody id="download-links-tbody">
+                                <!-- Content populated by script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- REMOVED: Cast Section Widget -->
+                
+                <!-- REMOVED: Comments Widget -->
+                
+            </div>
+
+            <div class="sidebar-col">
+                <div class="widget drama-info-widget">
+                    <!-- Movie Poster -->
+                    <div class="info-poster"><img src="https://m.media-amazon.com/images/S/pv-target-images/dd6fb66997dd4cb5606b587bb255d2cd2cec20ecbd11852a8f6b07a1358d09a1.jpg" alt="Deadpool & Wolverine Poster"></div>
+                    <h2 class="info-title">Deadpool & Wolverine Saga</h2>
+                    <p class="info-synopsis truncated" id="synopsis-text">This collection features the most significant appearances of Wade Wilson (Deadpool) and James Howlett (Wolverine) in chronological order of release, culminating in their ultimate, timeline-bending team-up. Follow Wade's origin, Logan's emotional farewell, and their eventual clash under the Time Variance Authority's (TVA) watchful eye.</p>
+                    <a id="read-more-btn" class="read-more-btn">Read More</a>
+                    <div class="info-details">
+                        <p><span>Type:</span> Movie Saga</p>
+                        <p><span>Year:</span> 2009 - 2024</p>
+                        <p><span>Parts:</span> 5 Movies</p>
+                        <p><span>Status:</span> Completed</p>
+                        <p><span>Score:</span> 8.9/10</p>
+                        <p><span>Duration:</span> Approx. 10 hrs.</p>
+                        <p><span>Genres:</span> Action, Comedy, Sci-Fi, Adventure</p>
+                    </div>
+                </div>
+                <div class="widget recommendations-widget">
+                    <h2 class="widget-title">You Might Also Like</h2>
+                    <div class="recommendations-list" id="recommendations-list">
+                        <!-- Content populated by script.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Cinekan. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. MOVIE SERIES DATA ---
+    const episodeData = [ 
+        { 
+            number: 1, 
+            title: 'Part 1: X-Men Origins: Wolverine (2009)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt0458525', 
+            year: '2009',
+            description: 'Wade Wilson\'s first appearance and Wolverine\'s origin story. Note: This version of Deadpool is not canonically recognized.',
+            downloadLinks: [ { quality: '1080p', url: '#' }, { quality: '720p', url: '#' } ] 
+        }, 
+        { 
+            number: 2, 
+            title: 'Part 2: Deadpool (2016)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt1431045', 
+            year: '2016',
+            description: 'The first official adventure of the Merc with a Mouth. Wade gets his powers, breaks the fourth wall, and seeks revenge on Ajax.',
+            downloadLinks: [ { quality: '4K', url: '#' }, { quality: '1080p', url: '#' } ] 
+        }, 
+        { 
+            number: 3, 
+            title: 'Part 3: Logan (2017)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt3315342', 
+            year: '2017',
+            description: 'Wolverine\'s heartbreaking, gritty, and definitive solo send-off, set in a dystopian future where mutants are nearly extinct.',
+            downloadLinks: [ { quality: '4K HDR', url: '#' }, { quality: '1080p', url: '#' } ] 
+        },
+        { 
+            number: 4, 
+            title: 'Part 4: Deadpool 2 (2018)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt5463162', 
+            year: '2018',
+            description: 'Deadpool forms the X-Force to save a young mutant from Cable. Features time travel, more chaos, and a post-credit scene teasing the main event.',
+            downloadLinks: [ { quality: '4K', url: '#' }, { quality: '1080p', url: '#' } ] 
+        },
+        { 
+            number: 5, 
+            title: 'Part 5: Deadpool & Wolverine (2024)', 
+            videoUrl: 'https://hnembed.cc/embed/movie/tt6263850', 
+            year: '2024',
+            description: 'The TVA pulls Wade into a mission, forcing him to team up with a reluctant Wolverine to save the sacred timeline.',
+            downloadLinks: [ { quality: '4K HDR', url: '#' }, { quality: '1080p', url: '#' } ] 
+        },
+    ];
+    
+    // Placeholder recommendation data (using the same structure as the index page data)
+    const recommendationData = [
+        { pageUrl: 'joker2.html', title: 'Joker: Folie à Deux', meta: 'Hollywood • Thriller', poster: 'https://m.media-amazon.com/images/M/MV5BNTRlNmU1NzEtODNkNC00ZGM3LWFmNzQtMjBlMWRiYTcyMGRhXkEyXkFqcGc@._V1_.jpg' },
+        { pageUrl: 'stree2.html', title: 'Stree 2', meta: 'Bollywood • Horror-Comedy', poster: 'https://filmfare.wwmindia.com/content/2024/sep/stree221727339607.jpg' },
+        { pageUrl: 'war2.html', title: 'War 2', meta: 'Bollywood • Action/Spy', poster: 'https://m.media-amazon.com/images/M/MV5BY2U0MGFkNzctOGI5OC00MzhhLWExYTctZjE5YjY3MzcwYjMzXkEyXkFqcGc@._V1_.jpg' },
+        { pageUrl: 'avatar3.html', title: 'Avatar 3', meta: 'Hollywood • Sci-Fi', poster: 'https://m.media-amazon.com/images/M/MV5BZDYxY2I1OGMtN2Y4MS00ZmU1LTgyNDAtODA0MzAyYjI0N2Y2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg' },
+    ];
+    
+    let currentEpisode = 1;
+    const totalEpisodes = episodeData.length;
+
+    // --- 2. DOM Elements ---
+    const episodeListContainer = document.getElementById('episodes-list-container');
+    const currentEpisodeTitle = document.getElementById('current-episode-title');
+    const downloadLinksTbody = document.getElementById('download-links-tbody');
+    const prevBtn = document.getElementById('prev-ep-btn');
+    const nextBtn = document.getElementById('next-ep-btn');
+    const videoPlayer = document.getElementById('video-player-iframe');
+    const synopsisText = document.getElementById('synopsis-text');
+    const readMoreBtn = document.getElementById('read-more-btn');
+    const recommendationsListContainer = document.getElementById('recommendations-list');
+
+    // --- 3. FUNCTIONS ---
+
+    function updateUI(episodeNumber) {
+        currentEpisode = parseInt(episodeNumber, 10);
+        const episode = episodeData.find(ep => ep.number === currentEpisode);
+        
+        // 1. Update Video Player and Title
+        if (episode && episode.videoUrl) { 
+            videoPlayer.src = episode.videoUrl; 
+        }
+        currentEpisodeTitle.textContent = `You are watching Part ${currentEpisode}: ${episode.title}`;
+        
+        // 2. Update Episode List Selection
+        document.querySelectorAll('.episode-item').forEach(item => { 
+            item.classList.toggle('current', parseInt(item.dataset.episode, 10) === currentEpisode); 
+        });
+        document.querySelector(`.episode-item[data-episode='${currentEpisode}']`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // 3. Update Download Links
+        downloadLinksTbody.innerHTML = '';
+        if (episode && episode.downloadLinks) {
+            episode.downloadLinks.forEach(link => {
+                downloadLinksTbody.innerHTML += `
+                    <tr>
+                        <td data-label="Part">Part ${currentEpisode}</td>
+                        <td data-label="Quality">${link.quality}</td>
+                        <td data-label="Video"><a href="${link.url}" class="download-btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-download"></i> Download</a></td>
+                        <td data-label="Subtitles"><a href="#" class="download-btn" target="_blank" rel="noopener noreferrer"><i class="fas fa-closed-captioning"></i> Download (ENG/HIN)</a></td>
+                    </tr>`;
+            });
+        }
+        
+        // 4. Update Navigation Buttons
+        prevBtn.disabled = currentEpisode === 1;
+        nextBtn.disabled = currentEpisode === totalEpisodes;
+    }
+
+    function generateEpisodeList() {
+        episodeData.forEach(episode => {
+            episodeListContainer.innerHTML += `
+                <a class="episode-item" data-episode="${episode.number}">
+                    <div class="ep-info">
+                        <p class="ep-number">Part ${episode.number}</p>
+                        <p class="ep-desc">${episode.title} (${episode.year})</p>
+                    </div>
+                </a>`;
+        });
+    }
+    
+    function generateRecommendations() {
+        recommendationsListContainer.innerHTML = recommendationData.map(rec => `
+            <a href="${rec.pageUrl}" class="rec-card">
+                <img src="${rec.poster}" alt="${rec.title}">
+                <div class="rec-card-info">
+                    <p class="rec-title">${rec.title}</p>
+                    <p class="rec-meta">${rec.meta}</p>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    // --- 4. EVENT LISTENERS & INITIAL CALLS ---
+    
+    // Episode Selection Handler
+    episodeListContainer.addEventListener('click', (e) => { 
+        const item = e.target.closest('.episode-item'); 
+        if (item) updateUI(item.dataset.episode); 
+    });
+    
+    // Navigation Handlers
+    prevBtn.addEventListener('click', () => { 
+        if (currentEpisode > 1) updateUI(currentEpisode - 1); 
+    });
+    nextBtn.addEventListener('click', () => { 
+        if (currentEpisode < totalEpisodes) updateUI(currentEpisode + 1); 
+    });
+    
+    // Synopsis Read More/Less Toggle
+    if (synopsisText && readMoreBtn) { 
+        readMoreBtn.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            synopsisText.classList.toggle('truncated'); 
+            readMoreBtn.textContent = synopsisText.classList.contains('truncated') ? 'Read More' : 'Read Less'; 
+        }); 
+    }
+
+    // Initial load
+    generateEpisodeList();
+    generateRecommendations();
+    updateUI(1); 
+});
+</script>
+</body>
+</html>

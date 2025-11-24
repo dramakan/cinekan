@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinekan - The best site to watch Bollywood & Hollywood movies for Free</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. Global Styles & Deep Purple Theme (Directly copied from Anikan) --- */
+        :root {
+            --color-background: #100f14;
+            --color-card: #1c1b22;
+            --color-text: #e0e0e0;
+            --color-text-muted: #a0a0a0;
+            --color-primary: #9D4EDD; /* Vibrant Purple Accent */
+            --color-primary-light: #c77dff;
+            --border-color: #2c2c34;
+            --font-family: 'Poppins', sans-serif;
+            --color-secondary-cta: #E50914; /* Red CTA */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--color-background); color: var(--color-text); font-family: var(--font-family); overflow-x: hidden; }
+        a { color: var(--color-text); text-decoration: none; transition: color 0.3s ease; }
+        img { max-width: 100%; display: block; }
+        
+        /* --- 2. Header & Navigation (Desktop/Tablet) --- */
+        .main-header { position: fixed; top: 0; left: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; z-index: 1000; background: linear-gradient(to bottom, rgba(16, 15, 20, 0.8), transparent); transition: background-color 0.3s ease; }
+        .main-header.scrolled { background-color: var(--color-background); }
+        .main-header .logo { font-size: 1.8rem; font-weight: 700; color: #fff; letter-spacing: 1px; flex-shrink: 0; }
+        .main-header .logo span { color: var(--color-primary); }
+        .main-nav { display: flex; gap: 2rem; }
+        .main-nav a { font-weight: 500; position: relative; }
+        .main-nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background-color: var(--color-primary); transition: width 0.3s ease; }
+        .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+        .main-nav a:hover, .main-nav a.active { color: var(--color-primary-light); }
+        .header-actions { display: flex; align-items: center; gap: 1.5rem; }
+        .search-bar { position: relative; }
+        .search-bar input { background: var(--color-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 0.5rem 1rem 0.5rem 2.5rem; color: var(--color-text); width: 250px; transition: all 0.3s ease; }
+        .search-bar input::placeholder { color: var(--color-text-muted); }
+        .search-bar input:focus { width: 300px; outline: none; border-color: var(--color-primary); box-shadow: 0 0 10px rgba(157, 78, 221, 0.5); }
+        .search-bar i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--color-text-muted); }
+        .cta-button { background: var(--color-primary); color: #fff; padding: 0.6rem 1.2rem; border-radius: 20px; font-weight: 600; transition: all 0.3s ease; flex-shrink: 0; }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(157, 78, 221, 0.5); background-color: var(--color-primary-light); }
+        
+        .search-results { position: absolute; top: 120%; left: 0; width: 300px; background: var(--color-card); border: 1px solid var(--border-color); border-radius: 8px; max-height: 400px; overflow-y: auto; display: none; z-index: 2000; }
+        .search-result-item { display: flex; gap: 10px; padding: 8px; transition: background-color 0.2s; cursor: pointer; align-items: center; }
+        .search-result-item img { width: 40px; height: 55px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+        .search-result-item:hover { background: var(--color-primary); color: #fff; }
+        .no-result { padding: 10px; color: var(--color-text-muted); }
+
+        /* --- 3. Spotlight / Hero Section (Desktop/Tablet) --- */
+        #spotlight { min-height: 100vh; position: relative; display: flex; align-items: center; padding: 0 5%; overflow: hidden; }
+        .spotlight-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .spotlight-background img { width: 100%; height: 100%; object-fit: cover; transition: opacity 1s ease-in-out; }
+        .spotlight-background::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(16, 15, 20, 1) 20%, rgba(16, 15, 20, 0.7) 50%, transparent 100%); }
+        .spotlight-content { max-width: 50%; z-index: 2; }
+        .spotlight-content .anime-title { font-size: 4rem; font-weight: 700; line-height: 1.1; color: #fff; letter-spacing: -1px; }
+        .spotlight-content .anime-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; margin: 1rem 0; }
+        .spotlight-content .rating { display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary-light); font-weight: 600; }
+        .spotlight-content .genres { color: var(--color-text-muted); }
+        .spotlight-content .description { font-size: 1rem; line-height: 1.6; margin-bottom: 2rem; max-width: 600px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .spotlight-buttons { display: flex; gap: 1rem; }
+        .spotlight-buttons .btn { padding: 0.8rem 2rem; border-radius: 30px; font-size: 1rem; font-weight: 600; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; border: none; cursor: pointer; }
+        .spotlight-buttons .btn-primary { background-color: var(--color-primary); color: #fff; }
+        .spotlight-buttons .btn-secondary { background-color: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+        .spotlight-buttons .btn:hover { transform: translateY(-3px); }
+        .carousel-controller { position: absolute; bottom: 5%; right: 5%; width: 45%; max-width: 800px; z-index: 2;}
+        .carousel-track { display: flex; gap: 1rem; }
+        .carousel-item { min-width: 180px; width: 180px; cursor: pointer; border-radius: 10px; overflow: hidden; border: 3px solid transparent; position: relative; transition: all 0.4s ease; }
+        .carousel-item img { height: 250px; object-fit: cover; }
+        .carousel-item::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+        .carousel-item-title { position: absolute; bottom: 10px; left: 10px; color: #fff; font-weight: 500; font-size: 0.9rem; z-index: 2; }
+        .carousel-item.active { border-color: var(--color-primary); transform: scale(1.08); box-shadow: 0 0 20px rgba(157, 78, 221, 0.5); }
+        
+        .mobile-dots-nav {
+            display: none;
+            position: absolute;
+            right: 2%;
+            top: 50%;
+            transform: translateY(-50%);
+            flex-direction: column;
+            gap: 10px;
+            z-index: 3;
+            padding: 5px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        .mobile-dots-nav .dot {
+            width: 8px;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .mobile-dots-nav .dot.active {
+            background-color: var(--color-primary-light);
+            transform: scale(1.5);
+        }
+
+        /* --- 4. Content Carousel Sections (Desktop/Tablet) --- */
+        .content-section { padding: 3rem 5%; }
+        .section-title { font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.75rem; }
+        .section-title i { color: var(--color-primary); }
+        .movie-carousel { /* Renamed from anime-carousel */
+             display: flex; gap: 1.5rem; overflow-x: auto; padding-bottom: 1.5rem; scrollbar-width: none; 
+        }
+        .movie-carousel::-webkit-scrollbar { display: none; }
+        .movie-card { /* Renamed from anime-card */
+             background: var(--color-card); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease; min-width: 200px; width: 200px; position: relative; 
+        }
+        .movie-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.4), 0 0 20px rgba(157, 78, 221, 0.3); }
+        .movie-card-img { width: 100%; height: 280px; object-fit: cover; }
+        .movie-card-content { padding: 1rem; }
+        .movie-card-title { font-size: 1rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text); }
+        .movie-card-meta { font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem; }
+        .play-icon-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 280px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; font-size: 3rem; color: #fff; opacity: 0; transition: opacity 0.3s ease; }
+        .movie-card:hover .play-icon-overlay { opacity: 1; }
+        
+        /* --- 5. Footer --- */
+        .main-footer { background-color: var(--color-card); padding: 3rem 5%; margin-top: 2rem; border-top: 2px solid var(--color-primary); }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; align-items: top; }
+        .footer-about .logo { margin-bottom: 1rem; font-size: 1.8rem; font-weight: 700; color: #fff; letter-spacing: 1px; }
+        .footer-about .logo span { color: var(--color-primary); }
+        .footer-about p { color: var(--color-text-muted); line-height: 1.6; }
+        .footer-heading { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: #fff; }
+        .footer-links ul { list-style: none; }
+        .footer-links ul li { margin-bottom: 0.75rem; }
+        .footer-links ul a:hover { color: var(--color-primary-light); padding-left: 5px; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-links a { font-size: 1.5rem; transition: transform 0.3s ease, color 0.3s ease; }
+        .social-links a:hover { color: var(--color-primary-light); transform: scale(1.2); }
+        .footer-bottom { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); color: var(--color-text-muted); font-size: 0.9rem; }
+        
+        /* --- 6. Animations --- */
+        .content-animate { animation: fadeInSlideUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* --- 7. Tablet Responsive Design --- */
+        @media (max-width: 1200px) {
+            .spotlight-content { max-width: 60%; }
+            #spotlight { flex-direction: column; justify-content: center; text-align: center; padding-top: 120px; min-height: auto; height: auto; }
+            #spotlight .spotlight-buttons { justify-content: center; }
+            .carousel-controller { width: 100%; position: relative; right: auto; bottom: auto; padding: 2rem 0; overflow-x: auto; }
+        }
+        
+        /* Explicitly hide bottom nav on larger screens */
+        .bottom-nav {
+            display: none; 
+        }
+
+        @media (max-width: 992px) {
+            .main-nav { display: none; }
+            .spotlight-content .anime-title { font-size: 3rem; }
+            .bottom-nav { display: none; } 
+        }
+        
+        /* * --------------------------------------------
+        * NETFLIX-STYLE MOBILE VIEW (MAX-WIDTH: 768px) 
+        * --------------------------------------------
+        */
+        @media (max-width: 768px) {
+            /* 1. Global / Reset */
+            .main-header, .content-section, #spotlight, .main-footer {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .content-section {
+                padding: 2rem 0 0.5rem 0;
+            }
+            .section-title { 
+                font-size: 1.5rem; 
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            /* 2. Header & Top Bar (Simplified) */
+            .main-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 0.75rem 5%;
+                background-color: var(--color-background);
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Hide the logo and CTA button on top, keeping only the search bar in the header */
+            .main-header .logo {
+                display: none; 
+            }
+            .header-actions {
+                gap: 0.5rem; 
+                flex-grow: 1; 
+            }
+            .cta-button {
+                display: none;
+            }
+            .search-bar {
+                order: 1; 
+                flex-grow: 1; 
+                margin-right: 0; 
+            }
+            .search-bar input {
+                width: 100%; 
+                max-width: none;
+            }
+            .search-bar input:focus {
+                width: 100%;
+            }
+            .search-results {
+                left: 0; 
+                right: auto;
+                width: 100%;
+                top: 45px;
+            }
+            .main-nav { display: none; }
+
+
+            /* 3. Spotlight / Hero Section (Focus on Media) */
+            #spotlight { 
+                padding-top: 50px; 
+                min-height: 85vh;
+                justify-content: flex-end;
+                padding-bottom: 2rem; 
+                text-align: left; 
+                align-items: flex-start;
+                position: relative;
+            }
+            .spotlight-background img#spotlight-bg-img {
+                display: none;
+            }
+            .spotlight-background img#spotlight-bg-img-mobile {
+                display: block; 
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: opacity 1s ease-in-out;
+            }
+            .spotlight-background::after { 
+                content: ''; 
+                position: absolute; 
+                top: 0; 
+                left: 0; 
+                width: 100%; 
+                height: 100%; 
+                background: linear-gradient(to top, rgba(16, 15, 20, 1) 15%, rgba(16, 15, 20, 0.5) 50%, transparent 100%); 
+            }
+            .spotlight-content { 
+                max-width: 100%; 
+                padding: 0 5%; 
+            }
+            .spotlight-content .anime-title { 
+                font-size: 2.5rem; 
+                text-shadow: 0 0 10px rgba(0,0,0,0.8);
+            }
+            .spotlight-content .anime-meta {
+                gap: 1rem; 
+                margin: 0.5rem 0 1.5rem 0;
+            }
+            .spotlight-content .description { 
+                display: none;
+            }
+            #spotlight .spotlight-buttons { 
+                justify-content: flex-start; 
+            }
+            .spotlight-buttons .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
+                border-radius: 5px; 
+            }
+
+            /* 4. Content Carousels (Full Width, No Padding) */
+            .movie-carousel { 
+                padding: 0 0.5rem 1rem 0.5rem; 
+                gap: 0.75rem; 
+            }
+            .movie-card { 
+                min-width: 120px;
+                width: 120px; 
+                border-radius: 5px;
+            }
+            .movie-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            .movie-card-img, .play-icon-overlay { 
+                height: 170px;
+            }
+            .movie-card-content {
+                padding: 0.5rem;
+            }
+            .movie-card-title {
+                font-size: 0.85rem;
+            }
+            .movie-card-meta {
+                font-size: 0.7rem;
+            }
+            
+            /* 5. Mobile Only Elements */
+            .carousel-controller { display: none; }
+            .mobile-dots-nav { display: flex; }
+            
+            /* 6. Footer (Simplified and Padded) */
+            .main-footer {
+                padding: 1.5rem 5%;
+                margin-top: 1rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+            .footer-about {
+                padding-bottom: 1rem;
+                margin-bottom: 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .footer-links {
+                 display: none; 
+            }
+            .footer-about p {
+                font-size: 0.9rem;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .footer-bottom { 
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                font-size: 0.8rem;
+            }
+
+            /* 7. Bottom Navigation Bar (App-like) */
+            .bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 55px; 
+                background-color: var(--color-card); 
+                border-top: 1px solid var(--border-color);
+                display: flex; 
+                justify-content: space-around;
+                align-items: center;
+                z-index: 2000;
+                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            }
+            
+            .bottom-nav-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: var(--color-text-muted);
+                font-size: 1.75rem;
+                transition: color 0.3s ease;
+                padding: 5px;
+                flex: 1; 
+            }
+            .bottom-nav-item i {
+                font-size: 1.1rem;
+                margin-bottom: 3px;
+            }
+            .bottom-nav-item span {
+                font-size: 0.65rem;
+            }
+            .bottom-nav-item:hover, .bottom-nav-item.active {
+                color: var(--color-primary);
+            }
+            
+            #drama-request-toggle-button {
+                bottom: 70px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            main {
+                padding-bottom: 60px; 
+            }
+        }
+        /* Adjust for super small screens */
+        @media (max-width: 480px) {
+            :root { font-size: 14px; }
+            .spotlight-content .anime-title { font-size: 1.8rem; }
+            .movie-card { 
+                min-width: 100px;
+                width: 100px;
+            }
+            .movie-card-img, .play-icon-overlay { 
+                height: 140px;
+            }
+            .search-results {
+                width: 100%; 
+            }
+        }
+
+        /* --- POPUP: Central Fade-in styles (The Modal) --- */
+        #drama-request-overlay-center {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.9); 
+          z-index: 9998;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.4s ease-in-out, visibility 0.4s;
+        }
+
+        #drama-request-overlay-center.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
+        #drama-request-content-center {
+          background-color: #151419;
+          padding: 40px;
+          border-radius: 15px;
+          max-width: 400px;
+          text-align: center;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+          border: 1px solid var(--color-primary);
+          position: relative;
+          transform: scale(0.9) translateY(20px); 
+          transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.5, 1);
+        }
+
+        #drama-request-overlay-center.active #drama-request-content-center {
+          transform: scale(1) translateY(0);
+        }
+        
+        .popup-title-center {
+          color: var(--color-primary); 
+          font-weight: 700;
+          font-size: 2rem;
+          margin-bottom: 10px;
+          text-shadow: 0 0 10px rgba(157, 78, 221, 0.8); 
+        }
+
+        .popup-message-center {
+            color: var(--color-text-muted);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .popup-promise {
+            color: var(--color-text); 
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 15px;
+            margin-bottom: 30px; 
+            padding: 15px; 
+            background-color: #2b2b34; 
+            border-left: 6px solid var(--color-secondary-cta);
+            border-radius: 4px;
+        }
+        
+        .popup-close-btn {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          background: none;
+          border: none;
+          color: var(--color-text-muted); 
+          font-size: 2rem;
+          cursor: pointer;
+          transition: color 0.3s, transform 0.3s;
+        }
+
+        .popup-close-btn:hover {
+          color: var(--color-secondary-cta); 
+          transform: rotate(180deg) scale(1.1);
+        }
+
+        /* --- Bottom-Right Clickable Button (Component 2) --- */
+        #drama-request-toggle-button {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background-color: var(--color-secondary-cta); 
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            z-index: 9999;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #drama-request-toggle-button:hover {
+            background-color: #C00811;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <a href="index.html" class="logo">Cine<span>Kan</span></a>
+        <nav class="main-nav"><a href="#" class="active">Home</a><a href="categories.html">Browse</a><a href="#trending-section">Trending</a><a href="movies.html">Bollywood</a><a href="hollywood.html">Hollywood</a><a href="https://dramakan.netlify.app/">Dramakan</a><a href="https://anikan.netlify.app/home">Anikan</a></nav>
+        <div class="header-actions">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input id="searchInput" type="text" placeholder="Search movies...">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+            <!-- Removed 'Sign In' button per user request. Retained 'Dramakan' link for structure. -->
+            <a href="#" class="cta-button">Sign In</a> 
+        </div>
+    </header>
+
+    <main>
+        <section id="spotlight">
+            <div class="spotlight-background">
+                <!-- Switched to movie content placeholders -->
+                <img id="spotlight-bg-img" src="" alt="Featured Movie Background">
+                <img id="spotlight-bg-img-mobile" src="" alt="Featured Movie Cover">
+            </div>
+            <div class="spotlight-content">
+                <h1 class="anime-title" id="spotlight-title"></h1>
+                <div class="anime-meta">
+                    <div class="rating"><i class="fas fa-star"></i><span id="spotlight-rating"></span></div>
+                    <div class="genres" id="spotlight-genres"></div>
+                </div>
+                <p class="description" id="spotlight-description"></p>
+                <div class="spotlight-buttons">
+                    <a id="spotlight-watch-btn" href="#" class="btn btn-primary"><i class="fas fa-play"></i> Watch Now</a>
+                    <button class="btn btn-secondary"><i class="fas fa-plus"></i> Add to List</button>
+                </div>
+            </div>
+            <div class="carousel-controller"><div class="carousel-track" id="carousel-track"></div></div>
+            <div class="mobile-dots-nav" id="mobile-dots-nav"></div>
+        </section>
+
+        <!-- Converted sections from Anime to Movie Genres -->
+        <section class="content-section" id="trending-section"><h2 class="section-title"><i class="fas fa-fire"></i> Trending Hollywood</h2><div class="movie-carousel" id="trending-carousel"></div></section>
+        <section class="content-section" id="latest-section"><h2 class="section-title"><i class="fas fa-clock"></i> Latest Bollywood Releases</h2><div class="movie-carousel" id="latest-carousel"></div></section>
+        <section class="content-section" id="schedule-section"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Upcoming Blockbusters</h2><div class="movie-carousel" id="schedule-carousel"></div></section>
+        <section class="content-section" id="type-section"><h2 class="section-title"><i class="fas fa-bomb"></i> Action Movies</h2><div class="movie-carousel" id="type-carousel"></div></section>
+        <section class="content-section" id="status-section"><h2 class="section-title"><i class="fas fa-mask"></i> Thrillers & Mysteries</h2><div class="movie-carousel" id="status-carousel"></div></section>
+        <section class="content-section" id="comedy-section"><h2 class="section-title"><i class="fas fa-laugh"></i> Comedy Hits</h2><div class="movie-carousel" id="comedy-carousel"></div></section>
+
+    </main>
+
+    <!-- Bottom Navigation (App-like Mobile View) -->
+    <nav class="bottom-nav">
+        <a href="https://dramakan.netlify.app/"class="bottom-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Dramakan</span>
+        </a>
+        <a href="index.html"  class="bottom-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Cinekan</span>
+        </a>
+        <a href="#trending-section" class="bottom-nav-item">
+            <i class="fas fa-fire"></i>
+            <span>Trending</span>
+        </a>
+        <a href="https://anikan.netlify.app/home" class="bottom-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Anikan</span>
+        </a>
+    </nav>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <a href="index.html" class="logo">Cine<span>Kan</span></a>
+                <p>Cinekan is a free movie streaming website where you can watch the latest Bollywood and Hollywood movies online in high quality for free.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul><li><a href="home.html">Home</a></li><li><a href="categories.html">Browse All</a></li><li><a href="#trending-section">Trending Now</a></li><li><a href="contact.html">Contact Us</a></li></ul>
+            </div>
+            <div class="footer-links">
+                <h3 class="footer-heading">Legal</h3>
+                <ul><li><a href="terms.html">Terms of Service</a></li><li><a href="privacy.html">Privacy Policy</a></li><li><a href="disclaimer.html">Disclaimer</a></li></ul>
+            </div>
+        </div>
+        <div class="footer-bottom">&copy; 2025 Cinekan. All rights reserved. This site does not store any files on its server.</div>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- 1. MOVIE DATA ---
+        // Changed "animeData" to "movieData" and updated content
+        const movieData = [
+           
+            { id: 1, title: 'Deadpool & Wolverine', pageUrl: 'd&w.html', type: 'Hollywood', rating: 8.9, info: '4K HD Print', genres: ['Action', 'Comedy', 'Supernatural'], description: 'The TVA pulls Deadpool from his quiet life to team up with a reluctant Wolverine to save the sacred timeline, leading to a chaotic multiversal adventure.', coverImage: 'https://m.media-amazon.com/images/S/pv-target-images/dd6fb66997dd4cb5606b587bb255d2cd2cec20ecbd11852a8f6b07a1358d09a1.jpg', bgImage: 'https://m.media-amazon.com/images/S/pv-target-images/358a542b6721a1c8a8c54b76735a18dbca9fdaa1d6c3bc1d06c0c36c28abfe3d.jpg', status: 'Trending', releaseYear: 2024, schedule: 'mon', category: 'Action' },
+            { id: 2, title: 'Stree 2', pageUrl: 'stree.html', type: 'Bollywood', rating: 7.8, info: 'New Theatrical Release', genres: ['Horror', 'Comedy', 'Mystery'], description: 'The residents of Chanderi must prepare once again to face the mysterious and vengeful female spirit, Stree, as she returns to haunt the town.', coverImage: 'https://m.media-amazon.com/images/S/pv-target-images/2511c131f9b0dd970c80d428e2e510168490e426d5010636fc33fbb880c1f3cd.jpg', bgImage: 'https://assets-in.bmscdn.com/discovery-catalog/events/et00364249-tlcbkhtkmb-landscape.jpg', status: 'Latest', releaseYear: 2024, schedule: 'wed', category: 'Thriller' },
+            { id: 3, title: 'Dune: Part Two', pageUrl: 'dune2.html', type: 'Hollywood', rating: 9.2, info: '4K Ultra HD', genres: ['Sci-Fi', 'Adventure', 'Action'], description: 'Paul Atreides unites with Chani and the Fremen to seek revenge against those who destroyed his family, while trying to prevent a terrible future only he can foresee.', coverImage: 'https://m.media-amazon.com/images/M/MV5BNTc0YmQxMjEtODI5MC00NjFiLTlkMWUtOGQ5NjFmYWUyZGJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', bgImage: 'https://occ-0-8407-92.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABTRCkkduZ2YrCz2N4TaP3W4ZQ8H5rBWbygdLkNervCdG_ARiVaPcbT1oBIqQ1b-RAa_yxxxthX9atkwCiluYmumD4sRsfdYXQXeP.jpg?r=1ab', status: 'Trending', releaseYear: 2024, schedule: 'fri', category: 'Action' },
+            { id: 4, title: 'De De Pyaar De 2', pageUrl: 'ddpd2.html', type: 'Bollywood', rating: 8.1, info: 'Expected Release', genres: ['Romance', 'Comedy', 'Drama'], description: 'The sequel continues the chaotic yet charming relationship saga of Ashish and Ayesha, navigating new age romance challenges.', coverImage: 'https://m.media-amazon.com/images/M/MV5BMDAzODI5MjctNWRhNi00OWU5LWIxMTItMTFjNzc4YjY3N2FlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', bgImage: 'https://i.ytimg.com/vi/WgAIllGyzQs/maxresdefault.jpg', status: 'Upcoming', releaseYear: 2025, schedule: 'tue', category: 'Comedy' },
+            { id: 5, title: 'Inside Out 2', pageUrl: 'insideout2.html', type: 'Hollywood', rating: 8.4, info: 'HD Dubbed', genres: ['Animation', 'Comedy', 'Family'], description: 'Riley\'s mind is undergoing a sudden demolition to make room for something entirely unexpected: new emotions! Joy, Sadness, Anger, Fear and Disgust aren\'t sure how to feel when Anxiety shows up.', coverImage: 'https://m.media-amazon.com/images/M/MV5BYWY3MDE2Y2UtOTE3Zi00MGUzLTg2MTItZjE1ZWVkMGVlODRmXkEyXkFqcGc@._V1_.jpg', bgImage: 'https://i0.wp.com/scifi.radio/wp-content/uploads/2024/03/inside-out-2-teaser-jpeg.webp?resize=1280%2C640&ssl=1', status: 'Latest', releaseYear: 2024, schedule: 'sat', category: 'Comedy' },
+            { id: 6, title: 'War 2', pageUrl: 'war2.html', type: 'Bollywood', rating: 8.7, info: 'Confirmed', genres: ['Action', 'Spy', 'Thriller'], description: 'The story continues the YRF Spy Universe with a new high-stakes mission involving super agents Kabir and Pathaan.', coverImage: 'https://m.media-amazon.com/images/M/MV5BY2U0MGFkNzctOGI5OC00MzhhLWExYTctZjE5YjY3MzcwYjMzXkEyXkFqcGc@._V1_.jpg', bgImage: 'https://images.filmibeat.com/img/popcorn/movie_lists/before-you-skip-it-heres-5-reasons-why-war-2-is-a-must-watch-in-2025-20250813131320-821.jpg', status: 'Upcoming', releaseYear: 2025, schedule: 'fri', category: 'Action' },
+            { id: 7, title: 'Singham Again', pageUrl: 'singham3.html', type: 'Bollywood', rating: 8.5, info: 'Expected Release', genres: ['Action', 'Crime', 'Police'], description: 'DCP Bajirao Singham returns to face new threats, leading his team of elite police officers in a battle against crime and corruption.', coverImage: 'https://m.media-amazon.com/images/S/pv-target-images/cd16d633a6c2cd6b49624990f98d3d118804afb93530022f508b2b19f6395a7e.jpg', bgImage: 'https://www.insideboxoffice.com/wp-content/uploads/2024/11/Singham-Again-Movie-Review.jpg', status: 'Upcoming', releaseYear: 2025, schedule: 'sun', category: 'Action' },
+            { id: 8, title: 'Joker: Folie à Deux', pageUrl: 'joker2.html', type: 'Hollywood', rating: 8.3, info: '4K HDR', genres: ['Musical', 'Thriller', 'Drama'], description: 'Arthur Fleck\'s journey continues in the sequel, which is rumored to be a musical set primarily in Arkham Asylum.', coverImage: 'https://m.media-amazon.com/images/M/MV5BNTRlNmU1NzEtODNkNC00ZGM3LWFmNzQtMjBlMWRiYTcyMGRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', bgImage: 'https://www.electricpalace.org.uk/wp-content/uploads/2024/09/joker-folie-a-deux-cert-tbc-2024-138-mins-1090x625.jpg', status: 'Trending', releaseYear: 2024, schedule: 'thu', category: 'Thriller' },
+            { id: 9, title: 'Mission: Impossible 8', pageUrl: 'mi8.html', type: 'Hollywood', rating: 9.0, info: 'Confirmed', genres: ['Action', 'Spy', 'Thriller'], description: 'Ethan Hunt and his IMF team face their most dangerous mission yet to track down a terrifying new weapon before it falls into the wrong hands.', coverImage: 'https://dx35vtwkllhj9.cloudfront.net/paramountpictures/mission-impossible-8/images/regions/es/updates1/onesheet.jpg', bgImage: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVFrFGl3T6iZSUFdefGYmvHcEt19wyJRrmAqm47JaBm0KzUlo9eDPu86AhHLDtD0mNSBgsBCr-QQlcmlbh8GFC_Jx-nSRMhuegs-ODF4NNhlZxptVKIp8vNc5AhQDKTpGO-6ZgBVSslQh2lM_NOBFyneqx7BIVxUuwcnW9vrZZ3rVX3EspcM3_83D3NIg/w1200-h630-p-k-no-nu/critica-mision-imposible-sentencia-final.jpg', status: 'Upcoming', releaseYear: 2025, schedule: 'mon', category: 'Action' },
+            { id: 10, title: 'Bhool Bhulaiyaa 3', pageUrl: 'bb3.html', type: 'Bollywood', rating: 7.7, info: 'Expected Release', genres: ['Horror', 'Comedy', 'Supernatural'], description: 'The third installment promises more scares and laughs as the ghost Manjulika returns to terrorize the new residents of a haunted haveli.', coverImage: 'https://m.media-amazon.com/images/M/MV5BOWYyZDZkOGEtYTBhNC00ZDk5LTkxZDUtMzg0Y2NlNzNiNTBiXkEyXkFqcGc@._V1_.jpg', bgImage: 'https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABfQU_ZTN5H6lAm4OBP9rBRQD_A7Cki00gyPl7OqObdWPavK18V_VFJJ4ZalOB_xh_Jg0m2z6T7t6OL3LI7VJBOEfBH_78VUya7b-.jpg?r=201', status: 'Upcoming', releaseYear: 2024, schedule: 'wed', category: 'Comedy' },
+            { id: 11, title: 'Wicked: Part One', pageUrl: 'wicked1.html', type: 'Hollywood', rating: 8.2, info: 'New Theatrical Release', genres: ['Musical', 'Fantasy', 'Adventure'], description: 'The untold true story of the Witches of Oz: Elphaba and Glinda, and how they came to be known as the Wicked Witch of the West and the Good Witch.', coverImage: 'https://m.media-amazon.com/images/M/MV5BOWMwYjYzYmMtMWQ2Ni00NWUwLTg2MzAtYzkzMDBiZDIwOTMwXkEyXkFqcGc@._V1_.jpg', bgImage: 'https://pixel.disco.ott.showmax.com/uuid/d8a3cffc-9c4a-34b4-b25d-f4d7b956011e/LAND_16_9?language=en-US&proposition=SHOWMAX&version=ea8a2f5b-a83e-34b0-bb58-ec2677ba4d4b', status: 'Latest', releaseYear: 2024, schedule: 'thu', category: 'Musical' },
+            { id: 12, title: 'Shaitaan', pageUrl: 'shaitaan.html', type: 'Bollywood', rating: 7.9, info: 'Completed', genres: ['Horror', 'Thriller', 'Supernatural'], description: 'A family vacation goes horribly wrong when a mysterious man forces his way into their home and takes control of the young daughter.', coverImage: 'https://m.media-amazon.com/images/M/MV5BM2Y2MjdhMjItYjI4Yi00NmM3LTk4ZGItZDQ2NmNlZmZhYjAzXkEyXkFqcGc@._V1_.jpg', bgImage: 'https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeNQCI8plFcjKsfzg_3_k62n-xV1yClmP_WaorGR6IlnllKZHVc-RN76TILwjF_a4pcEpx4FQXhebAZL_vkxmY8k1uqGwqlcs-_f.jpg?r=e85', status: 'Completed', releaseYear: 2024, schedule: 'None', category: 'Thriller' },
+          ];
+        
+        // --- 2. DOM Elements ---
+        const searchInput = document.getElementById('searchInput');
+        const searchResultsContainer = document.getElementById('searchResults');
+        const carouselTrack = document.getElementById('carousel-track');
+        // Added spotlightBgImgMobile
+        const spotlightBgImg = document.getElementById('spotlight-bg-img'), spotlightBgImgMobile = document.getElementById('spotlight-bg-img-mobile'), spotlightTitle = document.getElementById('spotlight-title'), spotlightRating = document.getElementById('spotlight-rating'), spotlightGenres = document.getElementById('spotlight-genres'), spotlightDescription = document.getElementById('spotlight-description');
+        const spotlightWatchBtn = document.getElementById('spotlight-watch-btn');
+        const spotlightContentElements = document.querySelectorAll('.spotlight-content > *');
+        const mobileDotsNav = document.getElementById('mobile-dots-nav');
+
+        // --- 3. Functions ---
+        let currentSpotlightIndex = 0;
+        // Top 5 movies for the spotlight carousel
+        const spotlightItems = movieData.filter(m => m.status === 'Trending' || m.status === 'Latest').slice(0, 5);
+
+        function updateSpotlightSection(movie, index) {
+            
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            
+            const imageToUpdate = isMobile ? spotlightBgImgMobile : spotlightBgImg;
+            const newImageSrc = isMobile ? movie.coverImage : movie.bgImage;
+
+            imageToUpdate.style.opacity = '0';
+            spotlightContentElements.forEach(el => el.classList.remove('content-animate'));
+            
+            setTimeout(() => {
+                
+                imageToUpdate.src = newImageSrc;
+                
+                spotlightTitle.textContent = movie.title;
+                spotlightRating.textContent = movie.rating;
+                spotlightGenres.textContent = movie.genres.join(', ');
+                spotlightDescription.textContent = movie.description;
+                spotlightWatchBtn.href = movie.pageUrl;
+
+                imageToUpdate.style.opacity = '1'; 
+                
+                spotlightContentElements.forEach(el => { el.classList.remove('content-animate'); void el.offsetWidth; el.classList.add('content-animate'); });
+                
+                document.querySelectorAll('.carousel-item').forEach((item, idx) => {
+                    item.classList.toggle('active', idx === index);
+                });
+
+                document.querySelectorAll('.mobile-dots-nav .dot').forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === index);
+                });
+
+                currentSpotlightIndex = index; 
+
+            }, 100); 
+            
+            const carouselItemWidth = 180; 
+            const carouselGap = 16;
+            const itemFullWidth = carouselItemWidth + carouselGap;
+            
+            if (carouselTrack) {
+                const scrollPosition = (index * itemFullWidth) - (carouselTrack.clientWidth / 2) + (itemFullWidth / 2);
+                carouselTrack.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function populateSpotlightCarousel(items) {
+            carouselTrack.innerHTML = '';
+            mobileDotsNav.innerHTML = '';
+
+            items.forEach((movie, index) => {
+                const desktopItem = document.createElement('div');
+                desktopItem.className = 'carousel-item';
+                desktopItem.innerHTML = `<img src="${movie.coverImage}" alt="${movie.title}"><div class="carousel-item-title">${movie.title}</div>`;
+                desktopItem.addEventListener('click', () => updateSpotlightSection(movie, index));
+                carouselTrack.appendChild(desktopItem);
+
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.addEventListener('click', () => updateSpotlightSection(movie, index));
+                mobileDotsNav.appendChild(dot);
+            });
+        }
+        
+        function createMovieCard(movie) {
+             return `<a href="${movie.pageUrl}" class="movie-card">
+                <img src="${movie.coverImage}" alt="${movie.title}" class="movie-card-img">
+                <div class="play-icon-overlay"><i class="fas fa-play"></i></div>
+                <div class="movie-card-content">
+                    <h3 class="movie-card-title">${movie.title}</h3>
+                    <p class="movie-card-meta">${movie.type} &bull; ${movie.info}</p>
+                </div>
+            </a>`;
+        }
+
+        function populateContentCarousel(containerId, data) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = data.map(createMovieCard).join('');
+        }
+        
+        function handleSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            if (!query) {
+                searchResultsContainer.style.display = 'none'; return;
+            }
+            const matched = movieData.filter(d => d.title.toLowerCase().includes(query) || d.genres.some(g => g.toLowerCase().includes(query)) );
+            searchResultsContainer.innerHTML = matched.length 
+                ? matched.map(movie => `<a href="${movie.pageUrl}" class="search-result-item"><img src="${movie.coverImage}" alt="${movie.title}"><div><div>${movie.title}</div><small style="color: var(--text-muted-color);">${movie.type}</small></div></a>`).join('') 
+                : '<div class="no-result">No results found</div>';
+            searchResultsContainer.style.display = 'block';
+        }
+
+        // --- 4. Initial Setup ---
+        populateSpotlightCarousel(spotlightItems);
+        
+        // 1. Trending Hollywood
+        const trendingHollywood = movieData.filter(m => m.status === 'Trending' && m.type === 'Hollywood').slice(0, 10);
+        populateContentCarousel('trending-carousel', trendingHollywood);
+        
+        // 2. Latest Bollywood Releases
+        const latestBollywood = movieData.filter(m => m.status === 'Latest' && m.type === 'Bollywood').slice(0, 10);
+        populateContentCarousel('latest-carousel', latestBollywood);
+
+        // 3. Upcoming Blockbusters
+        const upcomingMovies = movieData.filter(m => m.status === 'Upcoming').slice(0, 10);
+        populateContentCarousel('schedule-carousel', upcomingMovies);
+
+        // 4. Action Movies
+        const actionMovies = movieData.filter(m => m.category === 'Action').slice(0, 10);
+        populateContentCarousel('type-carousel', actionMovies);
+        
+        // 5. Thrillers & Mysteries
+        const thrillerMovies = movieData.filter(m => m.category === 'Thriller').slice(0, 10);
+        populateContentCarousel('status-carousel', thrillerMovies);
+        
+        // 6. Comedy Hits (New Section)
+        const comedyMovies = movieData.filter(m => m.category === 'Comedy').slice(0, 10);
+        // Note: The new section was added manually to the HTML with ID 'comedy-section'
+        populateContentCarousel('comedy-carousel', comedyMovies);
+
+
+        if (spotlightItems.length > 0) {
+            updateSpotlightSection(spotlightItems[0], 0);
+        }
+        
+        searchInput.addEventListener('input', handleSearch);
+        document.addEventListener('click', (e) => {!e.target.closest('.search-bar') && (searchResultsContainer.style.display = 'none')});
+
+        const mainHeader = document.querySelector('.main-header');
+        window.addEventListener('scroll', () => {
+            mainHeader.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        let spotlightInterval;
+        const autoAdvanceSpotlight = () => {
+            clearInterval(spotlightInterval);
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                // Auto-advance only on mobile
+                spotlightInterval = setInterval(() => {
+                    currentSpotlightIndex = (currentSpotlightIndex + 1) % spotlightItems.length;
+                    updateSpotlightSection(spotlightItems[currentSpotlightIndex], currentSpotlightIndex);
+                }, 5000);
+            }
+        };
+
+        autoAdvanceSpotlight();
+        window.addEventListener('resize', () => {
+            autoAdvanceSpotlight();
+            if (spotlightItems.length > 0) {
+                updateSpotlightSection(spotlightItems[currentSpotlightIndex], currentSpotlightIndex); 
+            }
+        });
+    });
+
+    /* --- Movie Request Popup Logic (Clickable Toggle) --- */
+    
+    function setupDramaRequestPopup() {
+        
+        const toggleButton = document.createElement('a');
+        toggleButton.id = 'drama-request-toggle-button';
+        // Changed text to "Movie"
+        toggleButton.innerHTML = '<i class="fas fa-question-circle"></i> Can\'t find your Movie?';
+        document.body.appendChild(toggleButton);
+
+        // 2. Define Pop-up HTML 
+        const POPUP_HTML = `
+            <h3 class="popup-title-center">Request A New Movie!</h3>
+            <p class="popup-message-center">If you couldn't find your favourite movie, don't worry!</p>
+            <p class="popup-promise">
+                DM us the movie name on Telegram, and it will be available on our site on sameday or within 2 days!
+            </p>
+            <a href="https://t.me/iamashish6700" target="_blank" class="btn btn-primary" style="width: 100%; display: block; background-color: #0088CC; border-color: #0088CC; font-weight: 600;">
+                <i class="fab fa-telegram-plane"></i> DM Movie Name Now
+            </a>
+            <button class="popup-close-btn" data-action="close">&times;</button>
+        `;
+
+        const overlay = document.createElement('div');
+        overlay.id = 'drama-request-overlay-center';
+        
+        const content = document.createElement('div');
+        content.id = 'drama-request-content-center';
+        content.innerHTML = POPUP_HTML;
+        
+        overlay.appendChild(content);
+        document.body.appendChild(overlay);
+
+
+        // 3. Function to dismiss the popup
+        const dismissPopup = () => {
+            overlay.classList.remove('active');
+            toggleButton.blur(); 
+        };
+
+        // 4. Function to show the popup
+        const showPopup = () => {
+            overlay.classList.add('active');
+        };
+
+        // 5. Attach Event Listeners
+        toggleButton.addEventListener('click', showPopup);
+
+        content.addEventListener('click', (e) => {
+            if (e.target.dataset.action === 'close' || e.target.closest('a')) {
+                dismissPopup();
+            }
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                dismissPopup();
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupDramaRequestPopup);
+    </script>
+</body>
+</html>
